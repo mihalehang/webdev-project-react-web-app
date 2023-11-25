@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+For CS4550 Web Dev Course Project
 
 ## Available Scripts
 
