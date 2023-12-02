@@ -7,6 +7,7 @@ function Account() {
     const fetchAccount = async () => {
         const account = await client.account();
         setAccount(account);
+        console.log(account);
     };
 
     const save = async () => {
@@ -22,6 +23,7 @@ function Account() {
     useEffect(() => {
         fetchAccount();
     }, []);
+
     return (
         <div className="w-50">
             <h1>Account</h1>
@@ -53,9 +55,12 @@ function Account() {
                     </button>
 
                     {/*implement admin things later*/}
-                    <Link to="/kanbas/admin/users" className="btn btn-warning w-100">
-                        Users
-                    </Link>
+                    {account.role === "ADMIN" && (
+                        <Link to="/users" className="btn btn-warning w-100">
+                            Users
+                        </Link>
+                    )}
+                    
                 </div>
             )}
         </div>

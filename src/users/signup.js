@@ -20,6 +20,7 @@ function Signup() {
         <div>
             <h1>Signup</h1>
             {error && <div>{error}</div>}
+            <h3>Username:</h3> 
             <input
                 value={credentials.username}
                 onChange={(e) =>
@@ -29,6 +30,7 @@ function Signup() {
                     })
                 }
             />
+            <h3>Password: </h3>
             <input
                 value={credentials.password}
                 onChange={(e) =>

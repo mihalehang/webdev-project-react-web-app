@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as client from "./client";
 import { BsFillCheckCircleFill, BsPencil, BsPlusCircleFill, BsTrash3Fill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 function UserTable() {
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState({ username: "", password: "", role: "USER" });
@@ -98,19 +99,22 @@ function UserTable() {
                 <tbody>
                     {users.map((user) => (
                         <tr key={user._id}>
-                            <td>{user.username}</td>
-                            <td>{user.firstName}</td>
-                            <td>{user.lastName}</td>
-                            <td>
-                                <button onClick={() => deleteUser(user)}>
-                                    <BsTrash3Fill />
-                                </button>
-                            </td>
-                            <td>
-                                <button className="btn btn-warning me-2">
-                                    <BsPencil onClick={() => selectUser(user)} />
-                                </button>
-                            </td>
+                            <Link to={`/users/${user._id}`}>
+                                <td>{user.username}</td>
+                                <td>{user.firstName}</td>
+                                <td>{user.lastName}</td>
+                            </Link>
+                                <td>
+                                    <button onClick={() => deleteUser(user)}>
+                                        <BsTrash3Fill />
+                                    </button>
+                                </td>
+                                <td>
+                                    <button className="btn btn-warning me-2">
+                                        <BsPencil onClick={() => selectUser(user)} />
+                                    </button>
+                                </td>
+                            
                         </tr>
                     ))}
                 </tbody>
