@@ -2,6 +2,10 @@
 
 For CS4550 Web Dev Course Project
 
+Team Name: Cheers
+Members: Michael Huang, Alidar Kuatbekov, Ren Taguchi, Adrian Tam
+Project Name: TissueBoxd
+
 ## Available Scripts
 
 In the project directory, you can run:

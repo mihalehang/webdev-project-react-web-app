@@ -4,6 +4,7 @@ import * as client from './movie-service';
 import * as likesClient from '../likes/client';
 import * as userService from '../users/client';
 import { useState } from 'react';
+import ProtectedContent from '../users/protectedContent';
 function MovieDetails() {
     const [movie, setMovie] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
@@ -29,9 +30,12 @@ function MovieDetails() {
 
     return (
         <div>
-            <button onClick={like} className="btn btn-primary float-end">
-                Like
-            </button>
+            <ProtectedContent>
+                <button onClick={like} className="btn btn-primary float-end">
+                    Like
+                </button>
+            </ProtectedContent>
+            
             <div>{movie && <>{JSON.stringify(movie)}</>}</div>
         </div>
     );

@@ -2,29 +2,31 @@ import * as client from './client';
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import * as followsClient from '../follows/client';
+import { useSelector } from 'react-redux';
 function UserDetails() {
     const [user, setUser] = useState(null);
-    const [currentUser, setCurrentUser] = useState(null);
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
+    const { currentUser } = useSelector((state) => state.usersReducer);
     const { id } = useParams();
-    
+
     const fetchUser = async () => {
         const user = await client.findUserById(id);
         setUser(user);
         fetchFollowers(user._id);
         fetchFollowing(user._id);
     };
-    const fetchCurrentUser = async () => {
-        const user = await client.account();
-        setCurrentUser(user);
-    };
+
     const follow = async () => {
         await followsClient.createUserFollowsUser(currentUser._id, user._id);
     };
 
+    const unfollow = async () => {
+        await followsClient.deleteUserFollowsUser(currentUser._id, user._id);
+    };
+
     const fetchFollowers = async (userId) => {
-        const followers = await followsClient.findUsersFollowingUser(userId);
+        const followers = await followsClient.findUsersFollowingUser(userId);        
         setFollowers(followers);
     };
 
@@ -33,15 +35,29 @@ function UserDetails() {
         setFollowing(following);
     };
 
+    const alreadyFollowing = () => {
+        return followers.find((follows) => follows.follower._id === currentUser._id);
+    };
+
+    const [currentFollow, setCurrentFollow] = useState();
+
     useEffect(() => {
         fetchUser();
-        fetchCurrentUser();
     }, [id]);
     return (
         <div className="container">
-            <button onClick={follow} className="btn btn-primary float-end">
-                Follow
-            </button>
+            {currentUser?._id !== id && (
+                <>
+                {/* todo: maybe make this dynamic - currently doesnt update in real time without resfreshing*/}
+                    {alreadyFollowing() ? (
+                        <button onClick={unfollow} className="btn btn-danger float-end">Unfollow</button>
+                    ) : (
+                        <button onClick={follow} className="btn btn-primary float-end">
+                            Follow
+                        </button>
+                    )}
+                </>
+            )}
             <h1>User Details</h1>
             {currentUser?.role === 'ADMIN' && (
                 <>

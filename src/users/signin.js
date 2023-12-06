@@ -1,13 +1,16 @@
 import * as client from './client';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { setCurrentUser } from "./reducer";
 function Signin() {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const signin = async () => {
-        await client.signin(credentials);
-        console.log()
-        navigate('/profile');
+        const user = await client.signin(credentials);
+        dispatch(setCurrentUser(user));
+        navigate('/TissueBoxd/profile');
     };
     return (
         <div>

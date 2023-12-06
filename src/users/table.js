@@ -99,22 +99,21 @@ function UserTable() {
                 <tbody>
                     {users.map((user) => (
                         <tr key={user._id}>
-                            <Link to={`/users/${user._id}`}>
+                            <Link to={`/TissueBoxd/profile/${user._id}`}>
                                 <td>{user.username}</td>
                                 <td>{user.firstName}</td>
                                 <td>{user.lastName}</td>
                             </Link>
-                                <td>
-                                    <button onClick={() => deleteUser(user)}>
-                                        <BsTrash3Fill />
-                                    </button>
-                                </td>
-                                <td>
-                                    <button className="btn btn-warning me-2">
-                                        <BsPencil onClick={() => selectUser(user)} />
-                                    </button>
-                                </td>
-                            
+                            <td>
+                                <button onClick={() => deleteUser(user)}>
+                                    <BsTrash3Fill />
+                                </button>
+                            </td>
+                            <td>
+                                <button className="btn btn-warning me-2">
+                                    <BsPencil onClick={() => selectUser(user)} />
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
