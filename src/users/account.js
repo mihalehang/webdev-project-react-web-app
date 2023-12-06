@@ -1,5 +1,7 @@
 import * as client from './client';
 import * as followsClient from '../follows/client';
+import * as likesClient from '../likes/client'
+import * as moviesClient from '../movies/movie-service'
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,6 +9,7 @@ import { setCurrentUser } from './reducer';
 function Account() {
     const [account, setAccount] = useState(null);
     const [following, setFollowing] = useState([]);
+    const [liked, setLiked] = useState([]);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -15,6 +18,7 @@ function Account() {
         if (user) {
             setAccount(user);
             fetchFollowing(user._id);
+            fetchMoviesLiked(user._id);
         }
     };
 
@@ -32,6 +36,11 @@ function Account() {
         const following = await followsClient.findUsersFollowedByUser(userId);
         setFollowing(following);
     };
+
+    const fetchMoviesLiked = async (userId) => {
+        const moviesLiked = await likesClient.findMoviesUserLikes(userId);
+        setLiked(moviesLiked);
+    }
 
     useEffect(() => {
         fetchAccount();
@@ -103,6 +112,21 @@ function Account() {
                                 {follows.followed.firstName} {follows.followed.lastName} (@
                                 {follows.followed.username})
                             </Link>
+                        ))}
+                    </div>
+
+                    <h2>Liked</h2>
+                    <div className="list-group">
+                        {liked.map((likes) => (
+                            <div>
+                                <Link
+                                    key={likes.movieId}
+                                    className="list-group-item"
+                                    to={`/TissueBoxd/movie/${likes.movieId}`}
+                                >
+                                    {likes.movieTitle}
+                                </Link>
+                            </div>
                         ))}
                     </div>
                 </div>

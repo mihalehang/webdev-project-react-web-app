@@ -16,7 +16,9 @@ function MovieDetails() {
     };
 
     const like = async () => {
-        await likesClient.createUserLikesMovie(currentUser._id, id);
+        if (movie){ 
+            await likesClient.createUserLikesMovie(currentUser._id, id, movie.Title);
+        }
     };
     const fetchCurrentUser = async () => {
         const user = await userService.account();
@@ -35,8 +37,9 @@ function MovieDetails() {
                     Like
                 </button>
             </ProtectedContent>
-            
+            <h1>{movie && movie.Title}</h1>
             <div>{movie && <>{JSON.stringify(movie)}</>}</div>
+            
         </div>
     );
 }

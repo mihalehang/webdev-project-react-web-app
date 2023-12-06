@@ -11,15 +11,15 @@ export const findAllLikes = async () => {
     const response = await request.get(`${LIKES_API}`);
     return response.data;
 };
-export const createUserLikesMovie = (userId, albumId) => {
-    const response = request.post(`${BASE_API}/users/${userId}/likes/${albumId}`);
+export const createUserLikesMovie = async (userId, movieId, movieTitle) => {
+    const response = await request.post(`${BASE_API}/users/${userId}/likes/${movieId}/${movieTitle}`);
     return response.data;
 };
-export const findMoviesUserLikes = (userId) => {
-    const response = request.get(`${BASE_API}/users/${userId}/likes`);
+export const findMoviesUserLikes = async (userId) => {
+    const response = await request.get(`${BASE_API}/users/${userId}/likes`);
     return response.data;
 };
-export const findUsersWhoLikeMovie = (albumId) => {
-    const response = request.get(`${BASE_API}/albums/${albumId}/likes`);
+export const findUsersWhoLikeMovie = async (movieId) => {
+    const response = await request.get(`${BASE_API}/movies/${movieId}/likes`);
     return response.data;
 };
