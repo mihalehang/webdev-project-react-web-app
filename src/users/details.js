@@ -1,14 +1,18 @@
 import * as client from './client';
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import * as followsClient from '../follows/client';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 function UserDetails() {
     const [user, setUser] = useState(null);
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
     const [clicked, setClicked] = useState(false);
     const { currentUser } = useSelector((state) => state.usersReducer);
+    const navigate = useNavigate();
+
     const { id } = useParams();
 
     const fetchUser = async () => {
@@ -19,8 +23,13 @@ function UserDetails() {
     };
 
     const follow = async () => {
-        await followsClient.createUserFollowsUser(currentUser._id, user._id);
-        setClicked(true);
+        if (currentUser) {
+            await followsClient.createUserFollowsUser(currentUser._id, user._id);
+            setClicked(true);
+        } else {
+            navigate("/TissueBoxd/login/");
+        }
+        
     };
 
     const unfollow = async () => {
@@ -29,7 +38,7 @@ function UserDetails() {
     };
 
     const fetchFollowers = async (userId) => {
-        const followers = await followsClient.findUsersFollowingUser(userId);        
+        const followers = await followsClient.findUsersFollowingUser(userId);
         setFollowers(followers);
     };
 
@@ -39,7 +48,9 @@ function UserDetails() {
     };
 
     const alreadyFollowing = () => {
-        return followers.find((follows) => follows.follower._id === currentUser._id);
+        if (currentUser) {
+            return followers.find((follows) => follows.follower._id === currentUser._id);
+        }
     };
 
     useEffect(() => {
@@ -50,9 +61,11 @@ function UserDetails() {
             {currentUser?._id !== id && (
                 <>
                     {alreadyFollowing() ? (
-                        <button onClick={unfollow} disabled={clicked} className="btn btn-danger float-end">Unfollow</button>
+                        <button onClick={unfollow} disabled={clicked} className="btn btn-danger float-end">
+                            Unfollow
+                        </button>
                     ) : (
-                        <button onClick={follow}  disabled={clicked} className="btn btn-primary float-end">
+                        <button onClick={follow} disabled={clicked} className="btn btn-primary float-end">
                             Follow
                         </button>
                     )}
@@ -72,7 +85,7 @@ function UserDetails() {
             )}
             {currentUser?.role !== 'ADMIN' && <>Username: "{user?.username}</>}
             <pre>{JSON.stringify(user, null, 2)}</pre>
-            <pre>{JSON.stringify(currentUser, null, 2)}</pre>
+            {currentUser && (<pre>{JSON.stringify(currentUser, null, 2)}</pre>)}
             <h2>Followers</h2>
             <div className="list-group">
                 {followers.map((follows) => (

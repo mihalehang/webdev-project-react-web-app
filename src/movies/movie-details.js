@@ -20,7 +20,12 @@ function MovieDetails() {
 
     const like = async () => {
         if (movie) {
-            await likesClient.createUserLikesMovie(currentUser._id, (currentUser.firstName + ' ' + currentUser.lastName), id, movie.Title);
+            await likesClient.createUserLikesMovie(
+                currentUser._id,
+                currentUser.firstName + ' ' + currentUser.lastName,
+                id,
+                movie.Title
+            );
             setClicked(true);
         }
     };
@@ -70,17 +75,15 @@ function MovieDetails() {
             <div>{movie && <>{JSON.stringify(movie)}</>}</div>
             Likes:
             <div>{likes.length}</div>
-            {currentUser && currentUser.role === 'ADMIN' && (<div>
+            <div>
                 {likes.map((user) => (
                     <div>
-                        <Link
-                            key={user.user}
-                            to={`/TissueBoxd/profile/${user.user}`}>
+                        <Link key={user.user} to={`/TissueBoxd/profile/${user.user}`}>
                             {user.userName}
                         </Link>
                     </div>
                 ))}
-            </div>)}
+            </div>
         </div>
     );
 }
