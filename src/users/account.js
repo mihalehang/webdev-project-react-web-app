@@ -9,6 +9,7 @@ import { setCurrentUser } from './reducer';
 function Account() {
     const [account, setAccount] = useState(null);
     const [following, setFollowing] = useState([]);
+    const [followers, setFollowers] = useState([]);
     const [liked, setLiked] = useState([]);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ function Account() {
         if (user) {
             setAccount(user);
             fetchFollowing(user._id);
+            fetchFollowers(user._id);
             fetchMoviesLiked(user._id);
         }
     };
@@ -36,6 +38,11 @@ function Account() {
         const following = await followsClient.findUsersFollowedByUser(userId);
         setFollowing(following);
     };
+
+    const fetchFollowers = async (userId) => {
+        const followers = await followsClient.findUsersFollowingUser(userId);
+        setFollowers(followers);
+    }
 
     const fetchMoviesLiked = async (userId) => {
         const moviesLiked = await likesClient.findMoviesUserLikes(userId);
@@ -112,6 +119,20 @@ function Account() {
                                 {follows.followed.firstName} {follows.followed.lastName} (@
                                 {follows.followed.username})
                             </Link>
+                        ))}
+                    </div>
+
+                    <h2>Followers</h2>
+                    <div className="list-group">
+                        {followers.map((follows) => (
+                            <Link
+                            key={follows.follower._id}
+                            className="list-group-item"
+                            to={`/TissueBoxd/profile/${follows.follower._id}`}
+                        >
+                            {follows.follower.firstName} {follows.follower.lastName} (@
+                            {follows.follower.username})
+                        </Link>
                         ))}
                     </div>
 

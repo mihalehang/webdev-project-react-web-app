@@ -7,6 +7,7 @@ function UserDetails() {
     const [user, setUser] = useState(null);
     const [followers, setFollowers] = useState([]);
     const [following, setFollowing] = useState([]);
+    const [clicked, setClicked] = useState(false);
     const { currentUser } = useSelector((state) => state.usersReducer);
     const { id } = useParams();
 
@@ -19,10 +20,12 @@ function UserDetails() {
 
     const follow = async () => {
         await followsClient.createUserFollowsUser(currentUser._id, user._id);
+        setClicked(true);
     };
 
     const unfollow = async () => {
         await followsClient.deleteUserFollowsUser(currentUser._id, user._id);
+        setClicked(true);
     };
 
     const fetchFollowers = async (userId) => {
@@ -39,8 +42,6 @@ function UserDetails() {
         return followers.find((follows) => follows.follower._id === currentUser._id);
     };
 
-    const [currentFollow, setCurrentFollow] = useState();
-
     useEffect(() => {
         fetchUser();
     }, [id]);
@@ -48,11 +49,10 @@ function UserDetails() {
         <div className="container">
             {currentUser?._id !== id && (
                 <>
-                {/* todo: maybe make this dynamic - currently doesnt update in real time without resfreshing*/}
                     {alreadyFollowing() ? (
-                        <button onClick={unfollow} className="btn btn-danger float-end">Unfollow</button>
+                        <button onClick={unfollow} disabled={clicked} className="btn btn-danger float-end">Unfollow</button>
                     ) : (
-                        <button onClick={follow} className="btn btn-primary float-end">
+                        <button onClick={follow}  disabled={clicked} className="btn btn-primary float-end">
                             Follow
                         </button>
                     )}

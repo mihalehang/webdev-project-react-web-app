@@ -22,7 +22,6 @@ export const fullTextSearch = async (text) => {
 
     try {
         const response = await axios.request(options);
-        console.log(response.data);
         return response;
     } catch (error) {
         console.error(error);
@@ -45,7 +44,6 @@ export const imdbIDSearch = async (id) => {
 
     try {
         const response = await axios.request(options);
-        console.log(response.data);
         return response;
     } catch (error) {
         console.error(error);
