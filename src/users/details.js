@@ -74,6 +74,7 @@ function UserDetails() {
             <h1>User Details</h1>
             {currentUser?.role === 'ADMIN' && (
                 <>
+                    update username
                     <input
                         onChange={(e) => setUser({ ...user, username: e.target.value })}
                         type="text"

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import * as client from "./client";
-import { BsFillCheckCircleFill, BsPencil, BsPlusCircleFill, BsTrash3Fill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import * as client from './client';
+import { BsFillCheckCircleFill, BsPencil, BsPlusCircleFill, BsTrash3Fill } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 function UserTable() {
     const [users, setUsers] = useState([]);
-    const [user, setUser] = useState({ username: "", password: "", role: "USER" });
+    const [user, setUser] = useState({ username: '', password: '', role: 'USER' });
     const createUser = async () => {
         try {
             const newUser = await client.createUser(user);
@@ -55,9 +55,11 @@ function UserTable() {
             <table className="table">
                 <thead>
                     <tr>
+                        <th>Password</th>
                         <th>Username</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Role</th>
                     </tr>
                     <tr>
                         <td>
@@ -65,6 +67,8 @@ function UserTable() {
                                 value={user.password}
                                 onChange={(e) => setUser({ ...user, password: e.target.value })}
                             />
+                        </td>
+                        <td>
                             <input
                                 value={user.username}
                                 onChange={(e) => setUser({ ...user, username: e.target.value })}
