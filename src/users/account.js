@@ -1,7 +1,6 @@
 import * as client from './client';
 import * as followsClient from '../follows/client';
 import * as likesClient from '../likes/client'
-import * as moviesClient from '../movies/movie-service'
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';

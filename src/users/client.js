@@ -28,6 +28,11 @@ export const findAllUsers = async () => {
     return response.data;
 };
 
+export const findRecentUserAdded = async () => {
+    const response = await request.get(`${USERS_API}/recent`);
+    return response.data;
+};
+
 export const createUser = async (user) => {
     const response = await request.post(`${USERS_API}`, user);
     return response.data;
@@ -53,5 +58,7 @@ export const signout = async () => {
     const response = await request.post(`${USERS_API}/signout`);
     return response.data;
 };
+
+
   
   
