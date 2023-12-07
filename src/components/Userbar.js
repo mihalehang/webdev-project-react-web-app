@@ -5,7 +5,7 @@ function Userbar() {
     if (currentUser) {
         return (
             <div>
-                <div>Current User: {currentUser.firstName} {currentUser.lastName}</div>
+                <div>Current User: @ {currentUser.username}</div>
                 <div>Logged In?: Yes</div>
             </div>
         );
