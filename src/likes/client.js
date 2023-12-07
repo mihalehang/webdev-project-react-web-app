@@ -27,3 +27,8 @@ export const deleteUserLikesMovie = async (userId, movieId) => {
     const response = await request.delete(`${BASE_API}/users/${userId}/likes/${movieId}`);
     return response.data;
 }
+
+export const findUsersRecentLike = async (userId) => {
+    const response = await request.get(`${BASE_API}/users/${userId}/likes/recent`);
+    return response.data;
+}

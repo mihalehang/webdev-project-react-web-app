@@ -1,3 +1,4 @@
+import RecentLike from '../../likes/recentLike';
 import RecentUsers from '../../users/recentUsers';
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
         <div>
             <h1>Home</h1>
             <RecentUsers/>
+            <RecentLike/>
         </div>
     );
 }
