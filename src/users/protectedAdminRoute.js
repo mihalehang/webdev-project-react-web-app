@@ -6,7 +6,7 @@ function ProtectedAdminRoute({ children }) {
     if (currentUser && currentUser.role === 'ADMIN') {
         return children;
     }
-    return <Navigate to="/signin" />;
+    return <Navigate to="/TissueBoxd/login" />;
 }
 
 export default ProtectedAdminRoute;
