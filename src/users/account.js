@@ -2,7 +2,7 @@ import * as client from './client';
 import * as followsClient from '../follows/client';
 import * as likesClient from '../likes/client'
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { setCurrentUser } from './reducer';
 function Account() {
@@ -12,6 +12,8 @@ function Account() {
     const [liked, setLiked] = useState([]);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { currentUser } = useSelector((state) => state.usersReducer);
+
 
     const fetchAccount = async () => {
         const user = await client.account();
@@ -24,7 +26,8 @@ function Account() {
     };
 
     const save = async () => {
-        await client.updateUser(account);
+        await client.updateCurrentUser(account);
+        dispatch(setCurrentUser(account));
     };
 
     const signout = async () => {
@@ -99,7 +102,7 @@ function Account() {
                     <button onClick={save}>Save</button>
                     <button onClick={signout}>Signout</button>
 
-                    {account.role === 'ADMIN' && (
+                    {currentUser.role === 'ADMIN' && (
                         <Link to="/TissueBoxd/users" className="btn btn-warning w-100">
                             Users
                         </Link>
