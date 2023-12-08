@@ -20,15 +20,18 @@ export default function RecentLike() {
 
     return (
         <div>
-            Most recent like:
-            {currentUser &&
-                recentLike.map((like) => (
-                    <div>
-                        <Link key={like.movieId} to={`/TissueBoxd/movie/${like.movieId}`}>
-                            {like.movieTitle}
-                        </Link>
-                    </div>
-                ))}
+            {currentUser && (
+                <div>
+                    Recent Like
+                    {recentLike.map((like) => (
+                        <div>
+                            <Link key={like.movieId} to={`/TissueBoxd/movie/${like.movieId}`}>
+                                {like.movieTitle}
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

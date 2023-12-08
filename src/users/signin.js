@@ -10,7 +10,7 @@ function Signin() {
     const signin = async () => {
         const user = await client.signin(credentials);
         dispatch(setCurrentUser(user));
-        navigate('/TissueBoxd/profile');
+        navigate('/TissueBoxd/home');
     };
     return (
         <div>
