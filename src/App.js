@@ -5,24 +5,22 @@ import Login from './pages/login/index.js';
 import Profile from './pages/profile/index.js';
 import Register from './pages/register/index.js';
 import Search from './pages/search/index.js';
-import Nav from './components/Nav.js';
 import MovieDetails from './movies/movie-details.js';
 import UserTable from './users/table.js';
 import UserDetails from './users/details.js';
-import Userbar from './components/Userbar.js';
 import { Provider } from 'react-redux';
 import store from './store.js';
 import CurrentUser from './users/currentUser.js';
 import MovieResults from './movies/movie-results.js';
 import ProtectedAdminRoute from './users/protectedAdminRoute.js';
+import NavigationBar from './components/NavigationBar.js';
 
 function App() {
     return (
         <Provider store={store}>
             <CurrentUser>
                 <HashRouter>
-                    <Userbar />
-                    <Nav />
+                    <NavigationBar/>
                     <div>
                         <Routes>
                             <Route path="/" element={<Navigate to="/TissueBoxd/home" />} />
