@@ -33,7 +33,7 @@ function Account() {
     const signout = async () => {
         await client.signout();
         dispatch(setCurrentUser(null));
-        navigate('/TissueBoxd/login');
+        navigate('/TissueBoxd/home');
     };
 
     const fetchFollowing = async (userId) => {
@@ -102,7 +102,7 @@ function Account() {
                     <button onClick={save}>Save</button>
                     <button onClick={signout}>Signout</button>
 
-                    {currentUser.role === 'ADMIN' && (
+                    {currentUser && currentUser.role === 'ADMIN' && (
                         <Link to="/TissueBoxd/users" className="btn btn-warning w-100">
                             Users
                         </Link>
