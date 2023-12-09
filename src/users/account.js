@@ -33,7 +33,7 @@ function Account() {
     const signout = async () => {
         await client.signout();
         dispatch(setCurrentUser(null));
-        navigate('/TissueBoxd/login');
+        navigate('/TissueBoxd/home');
     };
 
     const fetchFollowing = async (userId) => {

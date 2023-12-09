@@ -1,0 +1,20 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-title {
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.not-logged-in-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-description {
+    font-weight: bold;
+}

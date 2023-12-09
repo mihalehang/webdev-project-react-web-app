@@ -19,13 +19,10 @@ function App() {
     return (
         <Provider store={store}>
             <div className="body-background">
-            <CurrentUser>
-            <NavigationBar />
-                <div className="body-container">
-                    <HashRouter>
-                        
-
-                        
+                <CurrentUser>
+                    <NavigationBar />
+                    <div className="body-container">
+                        <HashRouter>
                             <Routes>
                                 <Route path="/" element={<Navigate to="/TissueBoxd/home" />} />
                                 <Route path="/TissueBoxd/home" element={<Home />} />
@@ -45,11 +42,9 @@ function App() {
                                 />
                                 <Route path="/TissueBoxd/profile/:id" element={<UserDetails />} />
                             </Routes>
-                        
-                    </HashRouter>
+                        </HashRouter>
                     </div>
-                
-            </CurrentUser>
+                </CurrentUser>
             </div>
         </Provider>
     );
