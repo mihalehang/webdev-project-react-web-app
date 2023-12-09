@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as client from "./client";
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from "./reducer";
-
+import "./signup.css";
 
 function Signup() {
     const [error, setError] = useState("");
@@ -23,7 +23,7 @@ function Signup() {
         }
     };
     return (
-        <div>
+        <div className="custom-div">
             <h1>Signup</h1>
             {error && <div>{error}</div>}
             <h3>Username:</h3> 
