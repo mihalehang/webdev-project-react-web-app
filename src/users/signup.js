@@ -24,7 +24,6 @@ function Signup() {
     };
     return (
         <div className="custom-div">
-            <h1>Signup</h1>
             {error && <div>{error}</div>}
             <h3>Username:</h3> 
             <input
