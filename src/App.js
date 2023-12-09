@@ -18,32 +18,39 @@ import NavigationBar from './components/NavigationBar.js';
 function App() {
     return (
         <Provider store={store}>
+            <div className="body-background">
             <CurrentUser>
-                <HashRouter>
-                    <NavigationBar/>
-                    <div>
-                        <Routes>
-                            <Route path="/" element={<Navigate to="/TissueBoxd/home" />} />
-                            <Route path="/TissueBoxd/home" element={<Home />} />
-                            <Route path="/TissueBoxd/login" element={<Login />} />
-                            <Route path="/TissueBoxd/profile" element={<Profile />} />
-                            <Route path="/TissueBoxd/register" element={<Register />} />
-                            <Route path="/TissueBoxd/search" element={<Search />} />
-                            <Route path="/TissueBoxd/search/:criteria" element={<MovieResults />} />
-                            <Route path="/TissueBoxd/movie/:id" element={<MovieDetails />} />
-                            <Route
-                                path="/TissueBoxd/users"
-                                element={
-                                    <ProtectedAdminRoute>
-                                        <UserTable />
-                                    </ProtectedAdminRoute>
-                                }
-                            />
-                            <Route path="/TissueBoxd/profile/:id" element={<UserDetails />} />
-                        </Routes>
+            <NavigationBar />
+                <div className="body-container">
+                    <HashRouter>
+                        
+
+                        
+                            <Routes>
+                                <Route path="/" element={<Navigate to="/TissueBoxd/home" />} />
+                                <Route path="/TissueBoxd/home" element={<Home />} />
+                                <Route path="/TissueBoxd/login" element={<Login />} />
+                                <Route path="/TissueBoxd/profile" element={<Profile />} />
+                                <Route path="/TissueBoxd/register" element={<Register />} />
+                                <Route path="/TissueBoxd/search" element={<Search />} />
+                                <Route path="/TissueBoxd/search/:criteria" element={<MovieResults />} />
+                                <Route path="/TissueBoxd/movie/:id" element={<MovieDetails />} />
+                                <Route
+                                    path="/TissueBoxd/users"
+                                    element={
+                                        <ProtectedAdminRoute>
+                                            <UserTable />
+                                        </ProtectedAdminRoute>
+                                    }
+                                />
+                                <Route path="/TissueBoxd/profile/:id" element={<UserDetails />} />
+                            </Routes>
+                        
+                    </HashRouter>
                     </div>
-                </HashRouter>
+                
             </CurrentUser>
+            </div>
         </Provider>
     );
 }
