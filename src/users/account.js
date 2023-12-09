@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as client from './client';
 import * as followsClient from '../follows/client';
 import * as likesClient from '../likes/client'
