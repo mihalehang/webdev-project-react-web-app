@@ -1,0 +1,26 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.network-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.update-form {
+    align-items: center;
+}
+
+.following-group {
+    margin-right: 20px;
+}
+
+.name-input {
+    display: flex;
+    flex-direction: row;
+}
+.lastname-input {
+    margin-left: 10px;
+}
