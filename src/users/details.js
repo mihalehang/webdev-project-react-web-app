@@ -84,9 +84,22 @@ function UserDetails() {
                     <button onClick={() => client.updateUser(user._id, user)}>Save</button>
                 </>
             )}
-            {currentUser?.role !== 'ADMIN' && <>Username: "{user?.username}</>}
-            <pre>{JSON.stringify(user, null, 2)}</pre>
-            {currentUser && (<pre>{JSON.stringify(currentUser, null, 2)}</pre>)}
+           
+            
+             {currentUser?.role !== 'USER' && (
+            <>
+                <div>Username: {user?.username}</div>
+                <div>First Name: {user?.firstName}</div>
+                <div>Last Name: {user?.lastName}</div>
+                {currentUser?.role === 'ADMIN' && (
+                    <>
+                        {/* Display additional details for 'USER' role */}
+                        <div>Email: {user?.email}</div>
+                        <div>Role: {user?.role}</div>
+                    </>
+                )}
+            </>
+        )}
             <h2>Followers</h2>
             <div className="list-group">
                 {followers.map((follows) => (
