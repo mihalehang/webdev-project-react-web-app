@@ -1,0 +1,22 @@
+.no-underline {
+  text-decoration: none;
+}
+
+.course-card {
+  width: 250px;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.list-group-horizontal .card.course-card {
+  height: 550px !important;
+}
+
+.card {
+  height: 400px; 
+}
+
+.card-img-top {
+  height: 360px;
+  object-fit: cover; /*maintains the aspect ratio*/
+}
