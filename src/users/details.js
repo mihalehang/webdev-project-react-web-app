@@ -72,34 +72,25 @@ function UserDetails() {
                 </>
             )}
             <h1>User Details</h1>
-            {currentUser?.role === 'ADMIN' && (
-                <>
-                    update username
-                    <input
-                        onChange={(e) => setUser({ ...user, username: e.target.value })}
-                        type="text"
-                        value={user?.username}
-                        className="form-control"
-                    />
-                    <button onClick={() => client.updateUser(user._id, user)}>Save</button>
-                </>
-            )}
            
             
-             {currentUser?.role !== 'USER' && (
+             {currentUser?.role === 'ADMIN' && (
             <>
                 <div>Username: {user?.username}</div>
                 <div>First Name: {user?.firstName}</div>
                 <div>Last Name: {user?.lastName}</div>
-                {currentUser?.role === 'ADMIN' && (
-                    <>
-                        {/* Display additional details for 'USER' role */}
-                        <div>Email: {user?.email}</div>
+                <div>Email: {user?.email}</div>
                         <div>Role: {user?.role}</div>
-                    </>
-                )}
             </>
         )}
+        {currentUser?.role === 'USER' && (
+                    <>
+                        {}
+                        <div>Username: {user?.username}</div>
+                <div>First Name: {user?.firstName}</div>
+                <div>Last Name: {user?.lastName}</div>
+                    </>
+                )}
             <h2>Followers</h2>
             <div className="list-group">
                 {followers.map((follows) => (
