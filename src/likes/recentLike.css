@@ -1,0 +1,33 @@
+.recent-like-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.recent-like-title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.course-card {
+    width: 250px;
+}
+
+.list-group-horizontal .card.course-card {
+    height: 550px !important;
+}
+
+.card {
+    height: 400px;
+}
+
+.card-img-top {
+    height: 360px;
+    object-fit: cover;
+    /*maintains the aspect ratio*/
+}

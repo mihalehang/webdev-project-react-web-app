@@ -19,13 +19,12 @@ export default function RecentUsers() {
 
     return (
         <div className="recent-user-container">
-            <div className='recent-user-title'>Recently added users! Check them out!</div>
+            <div className='recent-user-title'>Recently Added Users! Check Them Out!</div>
             <div className='list-group'>
                 {recentUsers.map((user) => (
-                    <div>
-                        <Link className ='list-group-item' key={user._id} to={`/TissueBoxd/profile/${user._id}`}>
-                            {user.firstName}
-                            {user.lastName}
+                    <div key={user._id}>
+                        <Link className ='list-group-item' to={`/TissueBoxd/profile/${user._id}`}>
+                            {user.firstName} {user.lastName} (@{user.username})
                         </Link>
                     </div>
                 ))}

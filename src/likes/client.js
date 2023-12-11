@@ -10,8 +10,8 @@ export const findAllLikes = async () => {
     const response = await request.get(`${LIKES_API}`);
     return response.data;
 };
-export const createUserLikesMovie = async (userId, userName, movieId, movieTitle) => {
-    const response = await request.post(`${BASE_API}/users/${userId}/${userName}/likes/${movieId}/${movieTitle}`);
+export const createUserLikesMovie = async (userId, userName, movieId, movieTitle, poster) => {
+    const response = await request.post(`${BASE_API}/users/${userId}/${userName}/likes/${movieId}/${movieTitle}`, poster);
     return response.data;
 };
 export const findMoviesUserLikes = async (userId) => {
