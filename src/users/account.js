@@ -12,6 +12,7 @@ function Account() {
     const [following, setFollowing] = useState([]);
     const [followers, setFollowers] = useState([]);
     const [liked, setLiked] = useState([]);
+    const [dob, setDob] = useState();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.usersReducer);
@@ -20,6 +21,7 @@ function Account() {
         const user = await client.account();
         if (user) {
             setAccount(user);
+            setDob(new Date(user.dob));
             fetchFollowing(user._id);
             fetchFollowers(user._id);
             fetchMoviesLiked(user._id);
@@ -57,12 +59,12 @@ function Account() {
     }, []);
 
     return (
-        <div className="profile-container d-flex flex-wrap">
+        <div>
             {account && (
-                <div>
+                <div className="profile-container d-flex flex-wrap">
                     <div className="update-form card">
                         <div className="card-body">
-                            <h5 class="card-title">Update Profile</h5>
+                            <h5 className="card-title">Update Profile</h5>
 
                             <div className="name-input my-3">
                                 <div>
@@ -92,11 +94,19 @@ function Account() {
                             </div>
                             <div className="my-3">
                                 <div>Birth Date:</div>
+                                {!isNaN(dob) && (
+                                    <div>
+                                        {dob.getUTCMonth() + 1}-{dob.getUTCDate()}-{dob.getFullYear()}
+                                    </div>
+                                )}
                                 <input
                                     id="dob"
                                     type="date"
                                     value={account.dob}
-                                    onChange={(e) => setAccount({ ...account, dob: e.target.value })}
+                                    onChange={(e) => {
+                                        setAccount({ ...account, dob: e.target.value });
+                                        setDob(new Date(e.target.value));
+                                    }}
                                 />
                             </div>
                             <div className="my-3">
@@ -120,9 +130,8 @@ function Account() {
                             </button>
                         </div>
                     </div>
-                    
+
                     <div className="network-group my-3">
-                        
                         <div className="following-group">
                             <h2>Following</h2>
                             <div className="list-group">
@@ -161,24 +170,27 @@ function Account() {
 
                     <div className="liked-group my-3">
                         <h2>Likes</h2>
-                        <div className="list-group">
-                            {liked.map((likes) => (
-                                <div>
-                                    <Link
-                                        key={likes.movieId}
-                                        className="list-group-item"
-                                        to={`/TissueBoxd/movie/${likes.movieId}`}
-                                    >
-                                        {likes.movieTitle}
-                                    </Link>
-                                </div>
-                            ))}
+                        <div className="d-flex flex-wrap">
+                            {liked &&
+                                liked.map((likes) => (
+                                    <div key={likes.movieId}>
+                                        <Link className="no-underline" to={`/TissueBoxd/movie/${likes.movieId}`}>
+                                            <div className="card course-card d-flex flex-column h-100">
+                                                <img src={likes.poster} className="card-img-top" alt="Poster"></img>
+                                                <div className="card-body d-flex flex-column justify-content-between">
+                                                    <h4 className="card-title">{likes.movieTitle}</h4>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                ))}
                         </div>
                     </div>
-
-                    <button className="btn btn-danger" onClick={signout}>
-                        Signout
-                    </button>
+                    <div className="signout-button">
+                        <button className="btn btn-danger" onClick={signout}>
+                            Signout
+                        </button>
+                    </div>
                 </div>
             )}
         </div>
