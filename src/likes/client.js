@@ -3,7 +3,8 @@ const request = axios.create({
     withCredentials: true,
 });
 
-const BASE_API = 'http://localhost:4000/api';
+// const BASE_API = 'http://localhost:4000/api';
+export const BASE_API = process.env.REACT_APP_API_BASE;
 export const LIKES_API = `${BASE_API}/likes`;
 
 export const findAllLikes = async () => {
