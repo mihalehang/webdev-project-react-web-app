@@ -4,6 +4,15 @@
     align-items: center;
 }
 
+.profile-network-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.network-card {
+    width: 500px;
+}
+
 .network-group {
     display: flex;
     flex-direction: row;
@@ -12,7 +21,8 @@
 
 .update-form {
     align-items: center;
-    width: fit-content;
+    width: 500px;
+
 }
 
 .following-group {
@@ -60,4 +70,9 @@
     height: 360px;
     object-fit: cover;
     /*maintains the aspect ratio*/
+}
+
+.network-title {
+    font-weight: bold;
+    margin-bottom: 10px;
 }

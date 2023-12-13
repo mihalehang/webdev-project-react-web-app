@@ -1,12 +1,13 @@
 .center-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 30vh;
-    padding: 3px; 
-  }
-  .signin-input {
-    display: block;
-    margin: 10px 0;
-  }
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 30vh;
+  padding: 3px;
+}
+
+.signin-input {
+  display: block;
+  margin: 10px 0;
+}

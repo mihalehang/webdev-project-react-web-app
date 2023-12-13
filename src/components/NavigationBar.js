@@ -30,7 +30,7 @@ function NivagationBar() {
                                 <NavDropdown title={`Logged in as: ${currentUser.username}`} id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#/TissueBoxd/profile">Profile</NavDropdown.Item>
                                     {currentUser.role === 'ADMIN' && (
-                                        <NavDropdown.Item href="#/TissueBoxd/users">Users</NavDropdown.Item>
+                                        <NavDropdown.Item href="#/TissueBoxd/users">ADMIN: Users</NavDropdown.Item>
                                     )}
                                     {currentUser && <NavDropdown.Divider />}
                                     {currentUser && (

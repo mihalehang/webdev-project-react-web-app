@@ -22,6 +22,7 @@ export default function RecentLike() {
     return (
         <div className="recent-like-container">
             {currentUser && <div className="recent-like-title">Revisit Movies You've Loved!</div>}
+            {recentLike.length === 0 && (<div>You have no recently liked movies.</div>)}
             {currentUser && recentLike && (
                 <div className="d-flex flex-wrap">
                     {recentLike.map((likes) => (
