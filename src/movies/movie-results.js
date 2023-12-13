@@ -22,7 +22,7 @@ function MovieResults() {
   return (
     <div>
       <div className="container mt-4">
-        <div className="list-group list-group-horizontal d-flex flex-row flex-wrap">
+        <div className="list-group list-group-horizontal d-flex flex-row flex-wrap justify-content-center">
           {searchResults &&
             searchResults.Response == "True" &&
             searchResults.Search.map((rslt) => (

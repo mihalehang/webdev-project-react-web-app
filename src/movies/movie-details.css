@@ -1,0 +1,13 @@
+.description {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.movie-title {
+  font-size: 60px;
+  font-family: "Nunito Sans", sans-serif;
+  line-height: 1.5;
+  font-weight: bold;
+}
