@@ -68,7 +68,7 @@ function UserDetails() {
         <div className="profile-container mt-3">
             <h1>User Details</h1>
             <div className="profile-network-container">
-                <div className="card profile-card">
+                <div className="card user-profile-card">
                     <div className="card-body">
                         <h3 className="card-title" style={{ textAlign: 'center' }}>
                             {user?.username}'s Profile
@@ -97,7 +97,7 @@ function UserDetails() {
                         </div>
                     </div>
                 </div>
-                <div className="card network-card mx-3">
+                <div className="card user-network-card mx-3">
                     <div className="card-body">
                         <h3 className="card-title" style={{ textAlign: 'center' }}>
                             Network
@@ -166,7 +166,7 @@ function UserDetails() {
                         liked.map((likes) => (
                             <div key={likes.movieId}>
                                 <Link className="no-underline" to={`/TissueBoxd/movie/${likes.movieId}`}>
-                                    <div className="card course-card d-flex flex-column h-100">
+                                    <div className="card course-card d-flex flex-column h-100 mx-3">
                                         <img src={likes.poster} className="card-img-top" alt="Poster"></img>
                                         <div className="card-body d-flex flex-column justify-content-between">
                                             <h4 className="card-title">{likes.movieTitle}</h4>
@@ -178,7 +178,7 @@ function UserDetails() {
                 </div>
             </div>
 
-            <div className="mt-3">
+            <div className="my-3">
                 {currentUser?._id !== id && (
                     <>
                         {alreadyFollowing() ? (

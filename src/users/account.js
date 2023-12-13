@@ -205,7 +205,7 @@ function Account() {
                                 ))}
                         </div>
                     </div>
-                    <div className="signout-button">
+                    <div className="signout-button my-3">
                         <button className="btn btn-danger" onClick={signout}>
                             Signout
                         </button>
