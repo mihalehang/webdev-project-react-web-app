@@ -52,7 +52,6 @@ function UserDetails() {
             return followers.find((follows) => follows.follower._id === currentUser._id);
         }
     };
-
     useEffect(() => {
         fetchUser();
     }, [id]);
