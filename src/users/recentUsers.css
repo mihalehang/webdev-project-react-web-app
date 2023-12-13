@@ -1,0 +1,9 @@
+.recent-user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recent-user-title{
+    font-size: 2em;
+    font-weight: bold;
+}

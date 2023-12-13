@@ -3,15 +3,16 @@ const request = axios.create({
     withCredentials: true,
 });
 
-const BASE_API = 'http://localhost:4000/api';
+// const BASE_API = 'http://localhost:4000/api';
+export const BASE_API = process.env.REACT_APP_API_BASE;
 export const LIKES_API = `${BASE_API}/likes`;
 
 export const findAllLikes = async () => {
     const response = await request.get(`${LIKES_API}`);
     return response.data;
 };
-export const createUserLikesMovie = async (userId, userName, movieId, movieTitle) => {
-    const response = await request.post(`${BASE_API}/users/${userId}/${userName}/likes/${movieId}/${movieTitle}`);
+export const createUserLikesMovie = async (userId, userName, movieId, movieTitle, poster) => {
+    const response = await request.post(`${BASE_API}/users/${userId}/${userName}/likes/${movieId}/${movieTitle}`, poster);
     return response.data;
 };
 export const findMoviesUserLikes = async (userId) => {

@@ -24,7 +24,8 @@ function MovieDetails() {
                 currentUser._id,
                 currentUser.firstName + ' ' + currentUser.lastName,
                 id,
-                movie.Title
+                movie.Title,
+                {poster: movie.Poster},
             );
             setClicked(true);
         }

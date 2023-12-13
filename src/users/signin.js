@@ -8,11 +8,13 @@ function Signin() {
     const [credentials, setCredentials] = useState({ username: '', password: '' });
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const signin = async () => {
         const user = await client.signin(credentials);
         dispatch(setCurrentUser(user));
         navigate('/TissueBoxd/home');
     };
+
     return (
         <div className="center-container custom-div">
             <label>Username</label>
@@ -29,4 +31,5 @@ function Signin() {
         </div>
     );
 }
+
 export default Signin;
