@@ -61,121 +61,140 @@ function Account() {
     return (
         <div>
             {account && (
-                <div className="profile-container d-flex flex-wrap">
-                    <div className="update-form card">
-                        <div className="card-body">
-                            <h5 className="card-title">Update Profile</h5>
+                <div className="profile-container">
+                    <div className="profile-network-container">
+                        <div className="update-form card mx-3">
+                            <div className="card-body">
+                                <h3 className="card-title">Update Profile</h3>
 
-                            <div className="name-input my-3">
-                                <div>
-                                    <div>First Name:</div>
-                                    <input
-                                        id="firstName"
-                                        value={account.firstName}
-                                        onChange={(e) => setAccount({ ...account, firstName: e.target.value })}
-                                    />
-                                </div>
-                                <div className="lastname-input">
-                                    <div>Last Name:</div>
-                                    <input
-                                        id="lastName"
-                                        value={account.lastName}
-                                        onChange={(e) => setAccount({ ...account, lastName: e.target.value })}
-                                    />
-                                </div>
-                            </div>
-                            <div className="my-3">
-                                <div>Password:</div>
-                                <input
-                                    id="password"
-                                    value={account.password}
-                                    onChange={(e) => setAccount({ ...account, password: e.target.value })}
-                                />
-                            </div>
-                            <div className="my-3">
-                                <div>Birth Date:</div>
-                                {!isNaN(dob) && (
+                                <div className="name-input my-3">
                                     <div>
-                                        {dob.getUTCMonth() + 1}-{dob.getUTCDate()}-{dob.getFullYear()}
+                                        <div>First Name:</div>
+                                        <input
+                                            id="firstName"
+                                            value={account.firstName}
+                                            onChange={(e) => setAccount({ ...account, firstName: e.target.value })}
+                                        />
                                     </div>
-                                )}
-                                <input
-                                    id="dob"
-                                    type="date"
-                                    value={account.dob}
-                                    onChange={(e) => {
-                                        setAccount({ ...account, dob: e.target.value });
-                                        setDob(new Date(e.target.value));
-                                    }}
-                                />
-                            </div>
-                            <div className="my-3">
-                                <div>Email:</div>
-                                <input
-                                    id="email"
-                                    value={account.email}
-                                    onChange={(e) => setAccount({ ...account, email: e.target.value })}
-                                />
-                            </div>
-                            <div className="my-3">
-                                <div>User Role:</div>
-                                <select onChange={(e) => setAccount({ ...account, role: e.target.value })}>
-                                    <option value="USER">User</option>
-                                    <option value="ADMIN">Admin</option>
-                                </select>
-                            </div>
+                                    <div className="lastname-input">
+                                        <div>Last Name:</div>
+                                        <input
+                                            id="lastName"
+                                            value={account.lastName}
+                                            onChange={(e) => setAccount({ ...account, lastName: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="my-3">
+                                    <div>Password:</div>
+                                    <input
+                                        id="password"
+                                        value={account.password}
+                                        onChange={(e) => setAccount({ ...account, password: e.target.value })}
+                                    />
+                                </div>
+                                <div className="my-3">
+                                    <div>Birth Date:</div>
+                                    {!isNaN(dob) && (
+                                        <div>
+                                            {dob.getUTCMonth() + 1}-{dob.getUTCDate()}-{dob.getFullYear()}
+                                        </div>
+                                    )}
+                                    <input
+                                        id="dob"
+                                        type="date"
+                                        value={account.dob}
+                                        onChange={(e) => {
+                                            setAccount({ ...account, dob: e.target.value });
+                                            setDob(new Date(e.target.value));
+                                        }}
+                                    />
+                                </div>
+                                <div className="my-3">
+                                    <div>Email:</div>
+                                    <input
+                                        id="email"
+                                        value={account.email}
+                                        onChange={(e) => setAccount({ ...account, email: e.target.value })}
+                                    />
+                                </div>
+                                <div className="my-3">
+                                    <div>User Role:</div>
+                                    <select onChange={(e) => setAccount({ ...account, role: e.target.value })}>
+                                        <option value="USER">User</option>
+                                        <option value="ADMIN">Admin</option>
+                                    </select>
+                                </div>
 
-                            <button className="btn btn-success" onClick={save}>
-                                Save
-                            </button>
+                                <button className="btn btn-success" onClick={save}>
+                                    Save
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="network-group my-3">
-                        <div className="following-group">
-                            <h2>Following</h2>
-                            <div className="list-group">
-                                {following.length === 0 && <div> Looks like you're not following anyone... yet!</div>}
-                                {following.map((follows) => (
-                                    <Link
-                                        key={follows.followed._id}
-                                        className="list-group-item"
-                                        to={`/TissueBoxd/profile/${follows.followed._id}`}
-                                    >
-                                        {follows.followed.firstName} {follows.followed.lastName} (@
-                                        {follows.followed.username})
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
+                        <div className="card network-card mx-3">
+                            <div className="card-body">
+                                <h3 className="card-title" style={{ textAlign: 'center' }}>
+                                    Network
+                                </h3>
+                                <div className="network-group">
+                                    <div className="following-group">
+                                        <div className="network-title">Following: {following.length}</div>
+                                        <div className="list-group">
+                                            {following.length === 0 && (
+                                                <div> Looks like you're not following anyone... yet!</div>
+                                            )}
+                                            {following.map((follows) => (
+                                                <Link
+                                                    key={follows.followed._id}
+                                                    className="list-group-item"
+                                                    to={`/TissueBoxd/profile/${follows.followed._id}`}
+                                                >
+                                                    {follows.followed.firstName} {follows.followed.lastName} (@
+                                                    {follows.followed.username})
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
 
-                        <div className="followers-group">
-                            <h2>Followers</h2>
-                            <div className="list-group">
-                                {followers.length === 0 && <div> Looks like no one is following you ... yet!</div>}
+                                    <div className="followers-group">
+                                        <div className="network-title">Followers {followers.length}</div>
+                                        <div className="list-group">
+                                            {followers.length === 0 && (
+                                                <div> Looks like no one is following you ... yet!</div>
+                                            )}
 
-                                {followers.map((follows) => (
-                                    <Link
-                                        key={follows.follower._id}
-                                        className="list-group-item"
-                                        to={`/TissueBoxd/profile/${follows.follower._id}`}
-                                    >
-                                        {follows.follower.firstName} {follows.follower.lastName} (@
-                                        {follows.follower.username})
-                                    </Link>
-                                ))}
+                                            {followers.map((follows) => (
+                                                <Link
+                                                    key={follows.follower._id}
+                                                    className="list-group-item"
+                                                    to={`/TissueBoxd/profile/${follows.follower._id}`}
+                                                >
+                                                    {follows.follower.firstName} {follows.follower.lastName} (@
+                                                    {follows.follower.username})
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="liked-group my-3">
                         <h2>Likes</h2>
+
+                        {liked.length === 0 && (
+                            <div>
+                                You have no liked movies.
+                            </div>
+                        )}
                         <div className="d-flex flex-wrap">
                             {liked &&
                                 liked.map((likes) => (
                                     <div key={likes.movieId}>
                                         <Link className="no-underline" to={`/TissueBoxd/movie/${likes.movieId}`}>
-                                            <div className="card course-card d-flex flex-column h-100">
+                                            <div className="card course-card d-flex flex-column h-100 mx-3">
                                                 <img src={likes.poster} className="card-img-top" alt="Poster"></img>
                                                 <div className="card-body d-flex flex-column justify-content-between">
                                                     <h4 className="card-title">{likes.movieTitle}</h4>

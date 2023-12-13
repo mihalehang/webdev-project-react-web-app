@@ -1,0 +1,52 @@
+.liked-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.course-card {
+    width: 250px;
+}
+
+.list-group-horizontal .card.course-card {
+    height: 550px !important;
+}
+
+.card {
+    height: 400px;
+}
+
+.card-img-top {
+    height: 360px;
+    object-fit: cover;
+    /*maintains the aspect ratio*/
+}
+
+.network-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-network-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.network-card {
+    width: 25vw;
+}
+
+.profile-card {
+    width: 25vw;
+}

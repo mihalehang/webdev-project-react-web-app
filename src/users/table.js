@@ -31,7 +31,7 @@ function UserTable() {
         try {
             await client.updateUser(user);
             fetchUsers();
-            setShowPassword(false);            
+            setShowPassword(false);
         } catch (err) {
             console.log(err);
         }
@@ -54,12 +54,13 @@ function UserTable() {
     useEffect(() => {
         fetchUsers();
     }, []);
+
     return (
-        <div className="row">
+        <div className="container m-3">
+            <div className="row">
                 <div className="col-md-4">
                     <h2>Edit User Details</h2>
                     <form>
-                       
                         <div className="mb-3">
                             <label htmlFor="username" className="form-label">
                                 Username
@@ -111,49 +112,47 @@ function UserTable() {
                                 <option value="FACULTY">Faculty</option>
                                 <option value="STUDENT">Student</option>
                             </select>
-
                         </div>
 
-                        
-                    {showPassword ? (
-                        <div className="mb-3">
-                            <label htmlFor="password" className="form-label">
-                                Password
-                            </label>
+                        {showPassword ? (
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label">
+                                    Password
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="password"
+                                    value={user.password}
+                                    onChange={(e) => setUser({ ...user, password: e.target.value })}
+                                />
+                            </div>
+                        ) : (
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label">
+                                    Password
+                                </label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="password"
+                                    value={user.password}
+                                    onChange={(e) => setUser({ ...user, password: e.target.value })}
+                                />
+                            </div>
+                        )}
+                        <div className="mb-3 form-check">
                             <input
-                                type="text"
-                                className="form-control"
-                                id="password"
-                                value={user.password}
-                                onChange={(e) => setUser({ ...user, password: e.target.value })}
+                                type="checkbox"
+                                className="form-check-input"
+                                id="showPassword"
+                                checked={showPassword}
+                                onChange={() => setShowPassword(!showPassword)}
                             />
-                        </div>
-                    ) : (
-                        <div className="mb-3">
-                            <label htmlFor="password" className="form-label">
-                                Password
+                            <label className="form-check-label" htmlFor="showPassword">
+                                Show Password
                             </label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                id="password"
-                                value={user.password}
-                                onChange={(e) => setUser({ ...user, password: e.target.value })}
-                            />
                         </div>
-                    )}
-                    <div className="mb-3 form-check">
-                        <input
-                            type="checkbox"
-                            className="form-check-input"
-                            id="showPassword"
-                            checked={showPassword}
-                            onChange={() => setShowPassword(!showPassword)}
-                        />
-                        <label className="form-check-label" htmlFor="showPassword">
-                            Show Password
-                        </label>
-                    </div>
 
                         <button type="button" className="btn btn-primary" onClick={updateUser}>
                             <BsFillCheckCircleFill /> Update User
@@ -163,40 +162,38 @@ function UserTable() {
                 <div className="col-md-8">
                     <h2>User List</h2>
                     <table className="table">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Role</th>
-                    </tr>
-                    <tr>
-                                               
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    {users.map((user) => (
-                        <tr key={user._id}>
-                            <Link to={`/TissueBoxd/profile/${user._id}`}>
-                                <td>{user.username}</td>
-                    
-                            </Link>
-                            <td>{user.role}</td>
-                            <td>
-                                <button onClick={() => deleteUser(user)}>
-                                    <BsTrash3Fill />
-                                </button>
-                            </td>
-                            <td>
-                                <button className="btn btn-warning me-2">
-                                    <BsPencil onClick={() => selectUser(user)} />
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Delete</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {users.map((user) => (
+                                <tr key={user._id}>
+                                    <td>
+                                        <Link to={`/TissueBoxd/profile/${user._id}`}>{user.username}</Link>
+                                    </td>
+                                    <td>{user.role}</td>
+                                    <td>
+                                        <button onClick={() => deleteUser(user)}>
+                                            <BsTrash3Fill />
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-warning me-2">
+                                            <BsPencil onClick={() => selectUser(user)} />
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
                 </div>
             </div>
+        </div>
     );
 }
 export default UserTable;
