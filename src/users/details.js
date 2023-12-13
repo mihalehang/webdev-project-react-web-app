@@ -68,7 +68,7 @@ function UserDetails() {
         <div className="profile-container mt-3">
             <h1>User Details</h1>
             <div className="profile-network-container">
-                <div className="card profile-card">
+                <div className="card user-profile-card">
                     <div className="card-body">
                         <h3 className="card-title" style={{ textAlign: 'center' }}>
                             {user?.username}'s Profile
@@ -97,7 +97,7 @@ function UserDetails() {
                         </div>
                     </div>
                 </div>
-                <div className="card network-card mx-3">
+                <div className="card user-network-card mx-3">
                     <div className="card-body">
                         <h3 className="card-title" style={{ textAlign: 'center' }}>
                             Network
