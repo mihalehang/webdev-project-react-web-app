@@ -166,7 +166,7 @@ function UserDetails() {
                         liked.map((likes) => (
                             <div key={likes.movieId}>
                                 <Link className="no-underline" to={`/TissueBoxd/movie/${likes.movieId}`}>
-                                    <div className="card course-card d-flex flex-column h-100">
+                                    <div className="card course-card d-flex flex-column h-100 mx-3">
                                         <img src={likes.poster} className="card-img-top" alt="Poster"></img>
                                         <div className="card-body d-flex flex-column justify-content-between">
                                             <h4 className="card-title">{likes.movieTitle}</h4>
@@ -178,7 +178,7 @@ function UserDetails() {
                 </div>
             </div>
 
-            <div className="mt-3">
+            <div className="my-3">
                 {currentUser?._id !== id && (
                     <>
                         {alreadyFollowing() ? (

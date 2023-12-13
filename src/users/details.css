@@ -44,7 +44,7 @@
 }
 
 .network-card {
-    width: 25vw;
+    width: 25vw !important;
 }
 
 .profile-card {
